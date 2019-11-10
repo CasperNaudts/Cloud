@@ -65,18 +65,13 @@ resource "aws_lb_target_group" "front_end" {
 
 resource "aws_lb_target_group_attachment" "attachment1" {
     target_group_arn = "${aws_lb_target_group.front_end.arn}"
-    target_id        = "i-04cc43f76c7b075d3"
+    target_id        = "${aws_instance.weba1.id}"
     port             = 80
 }
 
 resource "aws_lb_target_group_attachment" "attachment2" {
     target_group_arn = "${aws_lb_target_group.front_end.arn}"
-    target_id        = "i-0c251f1bb5ec33228"
+    target_id        = "${aws_instance.webb1.id}"
     port             = 80
 }
 
-resource "aws_lb_target_group_attachment" "attachment3" {
-    target_group_arn = "${aws_lb_target_group.front_end.arn}"
-    target_id        = "i-0c39a973f4858a421"
-    port             = 80
-}
