@@ -42,7 +42,7 @@ resource "aws_instance" "weba1" {
   availability_zone      = "us-east-1a"
   vpc_security_group_ids = ["${aws_security_group.web.id}"]
   key_name               = "Project"
-  subnet_id              = "subnet-0a7b5d5e56474e9d2"
+  subnet_id              = "${aws_subnet.privA.id}"
 
   tags = {
     Name = "terraform-web-A1"
@@ -55,7 +55,7 @@ resource "aws_instance" "webb1" {
   availability_zone      = "us-east-1b"
   vpc_security_group_ids = ["${aws_security_group.web.id}"]
   key_name               = "Project"
-  subnet_id              = "subnet-096d0a1f9740e3e2f"
+  subnet_id              = "${aws_subnet.privB.id}"
 
   tags = {
     Name = "terraform-web-B1"
