@@ -6,29 +6,14 @@ resource "aws_security_group" "web" {
     from_port       = 80
     to_port         = 80
     protocol        = "tcp"
-    security_groups = ["sg-09e63f0011cf285f7"]
+    security_groups = ["${aws_security_group.loadbalancer.id}"]
   }
-
-  ingress {
-    from_port       = 3306
-    to_port         = 3306
-    protocol        = "tcp"
-    security_groups = ["sg-0e93cfc9af75fc80a"]
-  }
-
-  egress {
-    from_port       = 80
-    to_port         = 80
-    protocol        = "tcp"
-    security_groups = ["sg-09e63f0011cf285f7"]
-  }
-
 
   egress {
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    security_groups = ["sg-0e93cfc9af75fc80a"]
+    cidr_blocks     = ["0.0.0.0/0"]
   }
 
   tags = {
