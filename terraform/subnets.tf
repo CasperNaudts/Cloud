@@ -4,7 +4,7 @@ resource "aws_subnet" "pubA" {
     vpc_id = "vpc-ef8ae395"
     
 
-    cidr_block = "172.31.16.0/20"
+    cidr_block = "172.31.203.0/24"
     availability_zone = "us-east-1a"
 
     tags = {
@@ -17,7 +17,7 @@ resource "aws_subnet" "pubB" {
     vpc_id = "vpc-ef8ae395"
     
 
-    cidr_block = "172.31.80.0/20"
+    cidr_block = "172.31.204.0/24"
     availability_zone = "us-east-1b"
 
     tags = {
@@ -30,7 +30,7 @@ resource "aws_subnet" "pubC" {
     vpc_id = "vpc-ef8ae395"
     
 
-    cidr_block = "172.31.32.0/20"
+    cidr_block = "172.31.205.0/24"
     availability_zone = "us-east-1c"
 
     tags = {
@@ -43,7 +43,7 @@ resource "aws_subnet" "privA" {
     vpc_id = "vpc-ef8ae395"
     
 
-    cidr_block = "172.31.100.0/24"
+    cidr_block = "172.31.200.0/24"
     availability_zone = "us-east-1a"
 
     tags = {
@@ -56,7 +56,7 @@ resource "aws_subnet" "privB" {
     vpc_id = "vpc-ef8ae395"
     
 
-    cidr_block = "172.31.1.0/24"
+    cidr_block = "172.31.201.0/24"
     availability_zone = "us-east-1b"
 
     tags = {
@@ -69,7 +69,7 @@ resource "aws_subnet" "privC" {
     vpc_id = "vpc-ef8ae395"
     
 
-    cidr_block = "172.31.245.0/24"
+    cidr_block = "172.31.202.0/24"
     availability_zone = "us-east-1c"
 
     tags = {

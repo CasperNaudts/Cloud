@@ -14,20 +14,27 @@ resource "aws_security_group" "database" {
     }
 }
 
+resource "aws_db_subnet_group" "default" {
+  name       = "main"
+  subnet_ids = ["${aws_subnet.privA.id}", "${aws_subnet.privB.id}", "${aws_subnet.privC.id}"]
+
+  tags = {
+    Name = "My DB subnet group"
+  }
+}
+
 resource "aws_db_instance" "service" {
     allocated_storage      = "10"
-    storage_type         = "gp2"
+    storage_type           = "gp2"
     engine                 = "mysql"
-    engine_version         = "5.7"
+    engine_version         = "8.0.16"
     instance_class         = "db.t2.micro"
     name                   = "testDB"
     username               = "pxl"
     password               = "pxlpxlpxl"
-    parameter_group_name   = "default.mysql5.7"
     identifier             = "testdbtf"
     skip_final_snapshot    = true
-    vpc_security_group_ids = ["${aws_security_group.database.id}"]
-    availability_zone      = "us-east-1a"
+    db_subnet_group_name   = "${aws_db_subnet_group.default.name}"
     multi_az               = true
-    # db_subnet_group_name   = "${aws_subnet.pubA.id}"
+    allow_major_version_upgrade = true
 }
