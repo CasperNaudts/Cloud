@@ -1,0 +1,44 @@
+{
+  "variables": {
+    "aws_access_key":"ASIAUXLFTZIH5TTGU4EC",
+    "aws_secret_key":"7+B/DNzq0d8NwvOgeZqD1Dz5h69CVAUEmKceBNkx",
+    "aws_security_token":"FwoGZXIvYXdzEN7//////////wEaDJU36vPWUv6WZLqpkCLLAeqN7t+6clZbeq/cHKFY1KOYCxfkX9XmRXUjx0gddy4g4TW9tOTl5lR1jvKR55czFcIVgzJoKMtjroosYEBr+6eVpFqdBjuu01EMx9cc0Aoobs3AlZ02RPHUlusjUV07Obu/t0TuZs0l79hMZ2CGwKxTFyXkghn339DR+NhYo2DqRPn4Qkh8Vli8dP8J0zZ78BFYX/c6Ca+Efj+jhTsTMH/mwgl9EHaIS6zFIkt/ArxPm2q3t2N2TXIR2twXGcivJT5f6p5TiLMn7oScKN6VlO8FMi2+lF5owqZKqW2yDcc0SSWcf8a6fzRbSgR2F5cnEPai8nvhgwk/d9y/vitvoLc="
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "token": "{{user `aws_security_token`}}",
+    "region": "us-east-1",
+    "source_ami_filter": {
+      "filters": {
+        "virtualization-type": "hvm",
+        "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
+        "root-device-type": "ebs"
+      },
+      "owners": ["099720109477"],
+      "most_recent": true
+    },
+    "instance_type": "t2.micro",
+    "vpc_id": "vpc-ef8ae395",
+    "subnet_id": "subnet-08ed238c90f062461",
+    "ssh_username": "ubuntu",
+    "ami_name": "packer-example {{timestamp}}"
+  }],
+
+  "provisioners": [{
+    "type": "shell",
+    "inline": [
+      "sudo apt-get update",
+      "audo apt-get upgrade",
+      "sudo apt-get install -y apache2",
+      "sudo ufw allow apache2",
+      "sudo systemctl enable apache2",
+      "sudo systemctl start apache2",
+      "sudo apt-get install wget",
+      "cd /var/www/html/",
+      "sudo wget https://github.com/CasperNaudts/webapp/blob/master/index.php",
+      "sudo wget https://github.com/CasperNaudts/webapp/blob/master/testfile.html"
+    ]
+  }]
+}
