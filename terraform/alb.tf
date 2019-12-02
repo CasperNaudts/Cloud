@@ -1,7 +1,6 @@
 resource "aws_security_group" "loadbalancer" {
-  name        = "loadbalancer-terraform"
-  description = "loadbalancer"
-  # vpc_id      = "${aws_vpc.main.id}"
+    name        = "loadbalancer-terraform"
+    description = "loadbalancer"
 
   ingress {
     # TLS (change to whatever ports you need)
@@ -25,7 +24,6 @@ resource "aws_security_group" "loadbalancer" {
   }
 }
 
-# Create a new load balancer
 resource "aws_lb" "loadbalancer" {
   name               = "loadbalancer-terraform"
   internal           = false
@@ -36,15 +34,15 @@ resource "aws_lb" "loadbalancer" {
   enable_deletion_protection       = false
   enable_cross_zone_load_balancing = true
 
-  #   access_logs {
-  #     bucket  = "${aws_s3_bucket.lb_logs.bucket}"
-  #     prefix  = "test-lb"
-  #     enabled = true
-  #   }
+    #   access_logs {
+    #     bucket  = "${aws_s3_bucket.lb_logs.bucket}"
+    #     prefix  = "test-lb"
+    #     enabled = true
+    #   }
 
-  tags = {
-    Environment = "production"
-  }
+    tags = {
+        Environment = "production"
+    }
 }
 
 resource "aws_lb_listener" "front_end" {
@@ -59,10 +57,10 @@ resource "aws_lb_listener" "front_end" {
 }
 
 resource "aws_lb_target_group" "front_end" {
-  name     = "target-group-terraform"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = "vpc-ef8ae395"
+    name     = "target-group-terraform"
+    port     = 80
+    protocol = "HTTP"
+    vpc_id   = "vpc-ef8ae395"
 }
 
 resource "aws_lb_target_group_attachment" "attachment1" {
@@ -76,3 +74,4 @@ resource "aws_lb_target_group_attachment" "attachment2" {
   target_id        = "${aws_instance.webb1.id}"
   port             = 80
 }
+
