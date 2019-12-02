@@ -1,17 +1,17 @@
 resource "aws_security_group" "database" {
-    name        = "DB-terraform"
-    description = "DB"
+  name        = "DB-terraform"
+  description = "DB"
 
-    ingress {
-        from_port   = 3306
-        to_port     = 3306
-        protocol    = "tcp"
-        security_groups     = ["${aws_security_group.web.id}"]
-    }
+  ingress {
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
+    security_groups = ["${aws_security_group.web.id}"]
+  }
 
-    tags = {
-        Name = "DB-terraform"
-    }
+  tags = {
+    Name = "DB-terraform"
+  }
 }
 
 resource "aws_db_subnet_group" "default" {
@@ -24,17 +24,17 @@ resource "aws_db_subnet_group" "default" {
 }
 
 resource "aws_db_instance" "service" {
-    allocated_storage      = "10"
-    storage_type           = "gp2"
-    engine                 = "mysql"
-    engine_version         = "8.0.16"
-    instance_class         = "db.t2.micro"
-    name                   = "testDB"
-    username               = "pxl"
-    password               = "pxlpxlpxl"
-    identifier             = "testdbtf"
-    skip_final_snapshot    = true
-    db_subnet_group_name   = "${aws_db_subnet_group.default.name}"
-    multi_az               = true
-    allow_major_version_upgrade = true
+  allocated_storage           = "10"
+  storage_type                = "gp2"
+  engine                      = "mysql"
+  engine_version              = "8.0.16"
+  instance_class              = "db.t2.micro"
+  name                        = "testDB"
+  username                    = "pxl"
+  password                    = "pxlpxlpxl"
+  identifier                  = "testdbtf"
+  skip_final_snapshot         = true
+  db_subnet_group_name        = "${aws_db_subnet_group.default.name}"
+  multi_az                    = true
+  allow_major_version_upgrade = true
 }
