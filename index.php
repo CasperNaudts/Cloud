@@ -1,10 +1,10 @@
 <?php
 echo gethostname();
 echo "<br>";
-$password = "${password}";
+$password = "pxlpxlpxl";
 $servername = "testdbtf.cowtdketd1dd.us-east-1.rds.amazonaws.com:3306";
-$username = "apache";
-$dbname = "employees";
+$username = "pxl";
+$dbname = "testDB";
 
 $conn = new mysqli(\$servername, \$username, \$password, \$dbname);
 if ($conn->connect_error) {
