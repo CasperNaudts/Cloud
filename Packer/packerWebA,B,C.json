@@ -1,0 +1,75 @@
+{
+  "variables": {
+    "aws_access_key":"XXX",
+    "aws_secret_key":"XXX",
+    "aws_security_token":"XXX"
+  },
+  "builders": [
+      {
+      "type": "amazon-ebs",
+   "access_key": "{{user `aws_access_key`}}",
+   "secret_key": "{{user `aws_secret_key`}}",
+   "instance_type": "t2.micro",
+   "vpc_id": "vpc-ef8ae395",
+   "subnet_id": "subnet-08880358e3ed8d763",
+    "ssh_username": "ubuntu",
+    "ami_name": "packer-webC {{timestamp}}"
+ },{
+ "type": "amazon-ebs",
+ "access_key": "{{user `aws_access_key`}}",
+ "secret_key": "{{user `aws_secret_key`}}",
+ "token": "{{user `aws_security_token`}}",
+ "region": "us-east-1",
+ "source_ami_filter": {
+   "filters": {
+     "virtualization-type": "hvm",
+     "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
+     "root-device-type": "ebs"
+   },
+   "owners": ["099720109477"],
+   "most_recent": true
+ },
+ "instance_type": "t2.micro",
+ "vpc_id": "vpc-ef8ae395",
+ "subnet_id": "subnet-08ed238c90f062461",
+ "ssh_username": "ubuntu",
+ "ami_name": "packer-webA {{timestamp}}"
+},{
+"type": "amazon-ebs",
+"access_key": "{{user `aws_access_key`}}",
+"secret_key": "{{user `aws_secret_key`}}",
+"token": "{{user `aws_security_token`}}",
+"region": "us-east-1",
+"source_ami_filter": {
+  "filters": {
+    "virtualization-type": "hvm",
+    "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
+    "root-device-type": "ebs"
+ },
+ "owners": ["099720109477"],
+ "most_recent": true
+},
+"instance_type": "t2.micro",
+"vpc_id": "vpc-ef8ae395",
+"subnet_id": "subnet-0b3d02c122f2e80ed",
+"ssh_username": "ubuntu",
+"ami_name": "packer-webB {{timestamp}}"
+}
+
+],
+  "provisioners": [{
+    "type": "shell",
+    "inline": [
+      "sudo apt-get update",
+      "audo apt-get upgrade",
+      "sudo apt-get install -y apache2",
+      "sudo ufw allow apache2",
+      "sudo systemctl enable apache2",
+      "sudo systemctl start apache2",
+      "sudo apt-get install wget",
+      "cd /var/www/html/",
+      "sudo wget https://github.com/CasperNaudts/webapp/blob/master/index.php",
+      "sudo wget https://github.com/CasperNaudts/webapp/blob/master/testfile.html"
+    ]
+  }]
+}
