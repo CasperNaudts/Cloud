@@ -34,7 +34,7 @@ resource "aws_db_instance" "service" {
   password                    = "pxlpxlpxl"
   identifier                  = "testdbtf"
   skip_final_snapshot         = true
-  db_subnet_group_name        = "${aws_db_subnet_group.default.name}"
+  db_subnet_group_name        = "aws_db_subnet_group.default.name"
   multi_az                    = true
   allow_major_version_upgrade = true
 }
