@@ -23,7 +23,7 @@ resource "aws_security_group" "web" {
 }
 
 resource "aws_instance" "weba1" {
-  ami                    = "ami-08617a11c1209fe48"
+  ami                    = "ami-0b0dfe9ac028fc973"
   instance_type          = "t2.micro"
   availability_zone      = "us-east-1a"
   vpc_security_group_ids = ["${aws_security_group.web.id}"]
@@ -36,7 +36,7 @@ resource "aws_instance" "weba1" {
 }
 
 resource "aws_instance" "webb1" {
-  ami                    = "ami-08617a11c1209fe48"
+  ami                    = "ami-0b0dfe9ac028fc973"
   instance_type          = "t2.micro"
   availability_zone      = "us-east-1b"
   vpc_security_group_ids = ["${aws_security_group.web.id}"]

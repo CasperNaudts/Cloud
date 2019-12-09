@@ -1,9 +1,25 @@
-- hosts: localhost
-  connection: local
-  user: ec2-user
+- name: Packer
+  hosts: 'all'
+  become: yes
+  become_method: sudo
   tasks:
-    - name: Install apache httpd
-      become: yes 
-      yum:
+    - name: install packages
+      yum: name={{ item }} update_cache=yes state=latest
+      with_items:
+        - httpd
+        - git
+        - php-cli
+        - php-curl
+        - php-fpm
+        - php-intl
+        - php-json
+        - php-mysql	
+    
+    - name: enable services
+      systemd:
         name: httpd
-        state: present
+        state: started
+        enabled: yes
+        
+    - name: clone git repo
+      git: repo=https://github.com/CasperNaudts/Cloud-web-files.git dest=/var/www/html update=no

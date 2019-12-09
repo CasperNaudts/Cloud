@@ -1,8 +1,8 @@
 { 
     "variables":{ 
-        "aws_access_key":"ASIAUXLFTZIHQN7TUDZE",
-        "aws_secret_key":"6NKPaIQsKRylJlk/TrVaXrniQSvqJS8MYlcluf9c",
-        "aws_security_token":"FwoGZXIvYXdzEIH//////////wEaDGDPW+4RcuZy9JySeSLLAU68vDjtpmkkE0BScWzKokc0c6yvGunjG33s7sePC/1zYezy6uFh17XrUP1cOydzo6rxSzZASmL8gdCeXHRARF42RE908ZQI+byBDeKS7D6e8klXZzHHwojHp5VQQCVBQfv/rJLWtWCc6KiRXyq+SqGEAWwJiEYjzW+Hf6YmA5Mmz2PWw8Y1fz0gpv9OEpute8YcaV//rPTMvLz0OE35staSu6ZLUSsd0JRb4AOVdbl3rkGbPJy64UQ6Lo2pmBwc35U0nFuXqV/HqB55KPP1t+8FMi1u6N8LudGMxyRYMumh+nK7ASJBLvVz5srUtf6KBxamV0c46vMVQFC30a5aXVc="
+        "aws_access_key":"ASIAUXLFTZIH3MP5BCIB",
+        "aws_secret_key":"Lz7R+4SBEXCu63WDI678MyTPMJIVfURxFZirlSMA",
+        "aws_security_token":"FwoGZXIvYXdzEIb//////////wEaDC7HUB0td4zikmZDwSLLASJnVmSCsZNjL5qhVndK0Yv+CEHrtOjo4cQQJKG5qgMJrZRK8oyrfpzWWtSDl159bPg7slU3sOWpO+eFVbxEQ1Bj4VFNeEZwb41FjeGhBC2P3rmiP0KpCejvvTkwrb0ujyp7LVuI1MHOaYNVLqm2wBhSfuKpA/3z5bRJhYId19Gqr+25ugG42hV4/qEU1qQLNNGz+YOjLjMECXUEAK98WX1Tp8bcJt41f76WFW8xaXDL0EGdj8Mmuvs6MuNIXtfZ+VyPqHoIYzTFg9tsKO2Bue8FMi0et/b74EMkbrNJQpID4wobrJ3IIf/Mvb21EVwjYYw1BpY7604LmZ6pWM0tdFs="
     },
     "builders":[ 
         { 
@@ -11,7 +11,7 @@
             "secret_key":"{{user `aws_secret_key`}}",
             "token":"{{user `aws_security_token`}}",
             "region":"us-east-1",
-            "source_ami": "ami-00068cd7555f543d5",
+            "source_ami": "ami-00ba9baafeb8ee782",
             "instance_type":"t2.micro",
             "vpc_id":"vpc-ef8ae395",
             "subnet_id":"subnet-07db0172b1ac468d5",
