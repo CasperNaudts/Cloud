@@ -2,9 +2,6 @@
   connection: local
   gather_facts: false
   user: root
- 	  
-	
-
 - hosts: apache
   sudo: yes
   tasks:
@@ -19,18 +16,7 @@
         - php5-intl
         - php5-json
         - php5-mcrypt
-        - php5-sqlite
-	
+        - php5-sqlite	
 - name: clone git repo
   git: repo=https://github.com/CasperNaudts/Cloud-web-files.git dest=/var/www/webFiles update=no
   sudo: yes
-
-
-
-
-
-
-
-
-	
-	
