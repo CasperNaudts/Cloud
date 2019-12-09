@@ -1,3 +1,16 @@
+data "aws_ami" "ec2-ami" {
+  filter {
+    name   = "state"
+    values = ["available"]
+  }
+  filter {
+    name   = "tag:Name"
+    values = ["packer-web"]
+  }
+  most_recent = true
+  owners = ["325020011023"]
+}
+
 resource "aws_security_group" "web" {
   name        = "web-terraform"
   description = "web"
@@ -23,12 +36,12 @@ resource "aws_security_group" "web" {
 }
 
 resource "aws_instance" "weba1" {
-  ami                    = "ami-08617a11c1209fe48"
+  ami                    = data.aws_ami.ec2-ami.id
   instance_type          = "t2.micro"
   availability_zone      = "us-east-1a"
   vpc_security_group_ids = ["${aws_security_group.web.id}"]
   key_name               = "Project"
-  subnet_id              = "aws_subnet.privA.id"
+  subnet_id              = aws_subnet.privA.id
 
   tags = {
     Name = "terraform-web-A1"
@@ -36,12 +49,12 @@ resource "aws_instance" "weba1" {
 }
 
 resource "aws_instance" "webb1" {
-  ami                    = "ami-08617a11c1209fe48"
+  ami                    = data.aws_ami.ec2-ami.id
   instance_type          = "t2.micro"
   availability_zone      = "us-east-1b"
   vpc_security_group_ids = ["${aws_security_group.web.id}"]
   key_name               = "Project"
-  subnet_id              = "aws_subnet.privB.id"
+  subnet_id              = aws_subnet.privB.id
 
   tags = {
     Name = "terraform-web-B1"

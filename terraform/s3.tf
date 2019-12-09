@@ -5,7 +5,7 @@ provider "aws" {
 
 resource "aws_s3_bucket" "b" {
   provider = aws.west
-  bucket = "project-cloud-snb-8"
+  bucket = "project-cloud-snb-8.1"
   acl    = "public-read"
 
   website {
@@ -16,7 +16,7 @@ resource "aws_s3_bucket" "b" {
 
 resource "aws_s3_bucket_policy" "b" {
   provider = aws.west
-  bucket = "aws_s3_bucket.b.id"
+  bucket = aws_s3_bucket.b.id
 
   policy = <<POLICY
 {
@@ -27,7 +27,7 @@ resource "aws_s3_bucket_policy" "b" {
       "Effect": "Allow",
       "Principal": "*",
       "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::project-cloud-snb-8/*"
+      "Resource": "arn:aws:s3:::project-cloud-snb-8.1/*"
     }
   ]
 }

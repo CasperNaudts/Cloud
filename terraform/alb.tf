@@ -39,13 +39,13 @@ resource "aws_lb" "loadbalancer" {
 }
 
 resource "aws_lb_listener" "front_end" {
-  load_balancer_arn = "aws_lb.loadbalancer.arn"
+  load_balancer_arn = aws_lb.loadbalancer.arn
   port              = "80"
   protocol          = "HTTP"
 
   default_action {
     type             = "forward"
-    target_group_arn = "aws_lb_target_group.front_end.arn"
+    target_group_arn = aws_lb_target_group.front_end.arn
   }
 }
 
@@ -57,14 +57,14 @@ resource "aws_lb_target_group" "front_end" {
 }
 
 resource "aws_lb_target_group_attachment" "attachment1" {
-  target_group_arn = "aws_lb_target_group.front_end.arn"
-  target_id        = "aws_instance.weba1.id"
+  target_group_arn = aws_lb_target_group.front_end.arn
+  target_id        = aws_instance.weba1.id
   port             = 80
 }
 
 resource "aws_lb_target_group_attachment" "attachment2" {
-  target_group_arn = "aws_lb_target_group.front_end.arn"
-  target_id        = "aws_instance.webb1.id"
+  target_group_arn = aws_lb_target_group.front_end.arn
+  target_id        = aws_instance.webb1.id
   port             = 80
 }
 
