@@ -1,8 +1,8 @@
 { 
     "variables":{ 
-        "aws_access_key":"ASIAUXLFTZIH3MP5BCIB",
-        "aws_secret_key":"Lz7R+4SBEXCu63WDI678MyTPMJIVfURxFZirlSMA",
-        "aws_security_token":"FwoGZXIvYXdzEIb//////////wEaDC7HUB0td4zikmZDwSLLASJnVmSCsZNjL5qhVndK0Yv+CEHrtOjo4cQQJKG5qgMJrZRK8oyrfpzWWtSDl159bPg7slU3sOWpO+eFVbxEQ1Bj4VFNeEZwb41FjeGhBC2P3rmiP0KpCejvvTkwrb0ujyp7LVuI1MHOaYNVLqm2wBhSfuKpA/3z5bRJhYId19Gqr+25ugG42hV4/qEU1qQLNNGz+YOjLjMECXUEAK98WX1Tp8bcJt41f76WFW8xaXDL0EGdj8Mmuvs6MuNIXtfZ+VyPqHoIYzTFg9tsKO2Bue8FMi0et/b74EMkbrNJQpID4wobrJ3IIf/Mvb21EVwjYYw1BpY7604LmZ6pWM0tdFs="
+        "aws_access_key":"ASIAUXLFTZIH5G67AI2C",
+        "aws_secret_key":"nBPYuCloI1f1EJSZ19A/PexEMAQlI9MlQyrSwT3n",
+        "aws_security_token":"FwoGZXIvYXdzEJD//////////wEaDGFdYOrV0nJmNxmXdyLLAUrP7MJP1YvlM1ILDetJuNX5n8u8ee+5VnKJWy4H8FD0O1cSckW8Y7eDlcfTB0BINGUjrv89hvjmM50jjAVazARzBErtO39z/1ITDXxDmArSyj4+Mfx0KBKEXA81Qs0IkdwHCCXftGzoC4c5tSA3nMWSfm2G3YxQl4d7I/aWmk3FI8E44sCTz0GpT/9506WLAoUOOYCDVa/yhp9jzH3sDc/kILmJx+HbQeM+wMBA2yLFbKx1tiVNP+kCxuh6VM9nWrlwUO4FgdipvxkcKPuKu+8FMi2vHAsmgln0gzHD4pNZrSAf8pVdGl3Bhp7o/2UnWaP7Biqzw6upl+I39IDkGlQ="
     },
     "builders":[ 
         { 
@@ -16,7 +16,10 @@
             "vpc_id":"vpc-ef8ae395",
             "subnet_id":"subnet-07db0172b1ac468d5",
             "ssh_username":"ec2-user",
-            "ami_name":"packer-web {{timestamp}}"
+            "ami_name":"packer-web {{timestamp}}",
+            "tags": {
+                "Name": "packer-web"
+            }
         }
     ],
     "provisioners":[ 

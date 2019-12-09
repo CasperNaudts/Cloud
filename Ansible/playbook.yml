@@ -7,13 +7,20 @@
       yum: name={{ item }} update_cache=yes state=latest
       with_items:
         - httpd
+        - httpd-tools
+        - mod_ssl
+        - php
+        - php-devel
+        - php-mysql
+        - php-pdo
+        - php-mbstring
+        - php-gd
+        - php-xml
+        - php-xmlrpc
+        # - php-mcrypt
+        - php-pear
         - git
-        - php-cli
-        - php-curl
-        - php-fpm
-        - php-intl
-        - php-json
-        - php-mysql	
+        
     
     - name: enable services
       systemd:
