@@ -1,36 +1,9 @@
 - hosts: localhost
   connection: local
-  gather_facts: false
-  user: root
- 	  
-	
-
-- hosts: apache
-  sudo: yes
+  user: ec2-user
   tasks:
-- name: install packages
-      apt: name={{ item }} update_cache=yes state=latest
-      with_items:
-        - apache2
-        - git
-        - php5-cli
-        - php5-curl
-        - php5-fpm
-        - php5-intl
-        - php5-json
-        - php5-mcrypt
-        - php5-sqlite
-	
-- name: clone git repo
-  git: repo=https://github.com/CasperNaudts/Cloud-web-files.git dest=/var/www/webFiles update=no
-  sudo: yes
-
-
-
-
-
-
-
-
-	
-	
+    - name: Install apache httpd
+      become: yes 
+      yum:
+        name: httpd
+        state: present
