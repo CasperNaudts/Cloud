@@ -17,15 +17,20 @@
       with_items:
         - apache2
         - git
+        - php5-cli
+        - php5-curl
+        - php5-fpm
+        - php5-intl
+        - php5-json
+        - php5-mcrypt
+        - php5-sqlite
 	
-- name: clone html template
-  git: repo=https://github.com/CasperNaudts/webapp/blob/master/testfile.html dest=/var/www/testfile.html update=no
+- name: clone git repo
+  git: repo=https://github.com/CasperNaudts/Cloud-web-files.git dest=/var/www/webFiles update=no
+  sudo: yes
 
 
-- Name: install html
 
-
-- Name: install php
 
 
 
