@@ -16,8 +16,8 @@ resource "aws_s3_bucket" "b" {
 
 resource "aws_s3_bucket_object" "file_upload" {
   bucket = "project-cloud-snb-8.1"
-  key    = "ikbeneenfoto.png"
-  source = "foto.png"
+  key    = "ikbeneenfoto.jpg"
+  source = "foto.jpg"
 }
 
 resource "aws_s3_bucket_policy" "b" {
