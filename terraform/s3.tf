@@ -14,6 +14,12 @@ resource "aws_s3_bucket" "b" {
   }
 }
 
+resource "aws_s3_bucket_object" "file_upload" {
+  bucket = "project-cloud-snb-8.1"
+  key    = "ikbeneenfoto.png"
+  source = "foto.png"
+}
+
 resource "aws_s3_bucket_policy" "b" {
   provider = aws.west
   bucket = aws_s3_bucket.b.id
