@@ -14,10 +14,10 @@ resource "aws_security_group" "database" {
   }
 }
 
-#data "aws_db_snapshot" "testDB_snapshot" {
-#    most_recent = true
-#    db_instance_identifier = "testdbtf"
-#}
+data "aws_db_snapshot" "testDBsnapshot" {
+    most_recent = true
+    db_instance_identifier = "testdbtf"
+}
 
 resource "aws_db_subnet_group" "default" {
   name       = "main"
@@ -38,8 +38,8 @@ resource "aws_db_instance" "service" {
   username                    = "pxl"
   password                    = "pxlpxlpxl"
   identifier                  = "testdbtf"
-  skip_final_snapshot         = true
-# snapshot_identifier         = "${data.aws_db_snapshot.db_snapshot.id}"
+# skip_final_snapshot         = true
+  snapshot_identifier         = "${data.aws_db_snapshot.db_snapshot.id}"
   db_subnet_group_name        = aws_db_subnet_group.default.name
   multi_az                    = true
   allow_major_version_upgrade = true
