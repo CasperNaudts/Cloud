@@ -1,15 +1,7 @@
-{ 
-    "variables":{ 
-        "aws_access_key":"ASIAUXLFTZIH5G67AI2C",
-        "aws_secret_key":"nBPYuCloI1f1EJSZ19A/PexEMAQlI9MlQyrSwT3n",
-        "aws_security_token":"FwoGZXIvYXdzEJD//////////wEaDGFdYOrV0nJmNxmXdyLLAUrP7MJP1YvlM1ILDetJuNX5n8u8ee+5VnKJWy4H8FD0O1cSckW8Y7eDlcfTB0BINGUjrv89hvjmM50jjAVazARzBErtO39z/1ITDXxDmArSyj4+Mfx0KBKEXA81Qs0IkdwHCCXftGzoC4c5tSA3nMWSfm2G3YxQl4d7I/aWmk3FI8E44sCTz0GpT/9506WLAoUOOYCDVa/yhp9jzH3sDc/kILmJx+HbQeM+wMBA2yLFbKx1tiVNP+kCxuh6VM9nWrlwUO4FgdipvxkcKPuKu+8FMi2vHAsmgln0gzHD4pNZrSAf8pVdGl3Bhp7o/2UnWaP7Biqzw6upl+I39IDkGlQ="
-    },
+{
     "builders":[ 
         { 
             "type":"amazon-ebs",
-            "access_key":"{{user `aws_access_key`}}",
-            "secret_key":"{{user `aws_secret_key`}}",
-            "token":"{{user `aws_security_token`}}",
             "region":"us-east-1",
             "source_ami": "ami-00ba9baafeb8ee782",
             "instance_type":"t2.micro",
