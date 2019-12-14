@@ -14,10 +14,10 @@ resource "aws_security_group" "database" {
   }
 }
 
-data "aws_db_snapshot" "testDBsnapshot" {
-    most_recent = true
-    db_instance_identifier = "testdbtf"
-}
+# data "aws_db_snapshot" "testDBsnapshot" {
+#     most_recent = true
+#     db_instance_identifier = "testdbtf"
+# }
 
 resource "aws_db_subnet_group" "default" {
   name       = "main"
@@ -32,14 +32,14 @@ resource "aws_db_instance" "service" {
   allocated_storage           = "10"
   storage_type                = "gp2"
   engine                      = "mysql"
-  engine_version              = "8.0.16"
+  engine_version              = "5.7.26"
   instance_class              = "db.t2.micro"
   name                        = "testDB"
   username                    = "pxl"
   password                    = "pxlpxlpxl"
   identifier                  = "testdbtf"
-# skip_final_snapshot         = true
-  snapshot_identifier         = data.aws_db_snapshot.testDBsnapshot.id
+  skip_final_snapshot         = true
+  # snapshot_identifier         = data.aws_db_snapshot.testDBsnapshot.id
   db_subnet_group_name        = aws_db_subnet_group.default.name
   multi_az                    = true
   allow_major_version_upgrade = true

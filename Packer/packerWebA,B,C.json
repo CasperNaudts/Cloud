@@ -3,7 +3,7 @@
         { 
             "type":"amazon-ebs",
             "region":"us-east-1",
-            "source_ami": "ami-00ba9baafeb8ee782",
+            "source_ami": "ami-00068cd7555f543d5",
             "instance_type":"t2.micro",
             "vpc_id":"vpc-ef8ae395",
             "subnet_id":"subnet-07db0172b1ac468d5",

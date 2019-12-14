@@ -16,7 +16,7 @@ resource "aws_s3_bucket" "b" {
 
 resource "aws_s3_bucket_object" "file_upload" {
   provider = aws.west
-  bucket = "project-cloud-snb-8.1"
+  bucket = aws_s3_bucket.b.id
   key    = "ikbeneenfoto.jpg"
   source = "foto.jpg"
 }

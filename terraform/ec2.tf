@@ -60,3 +60,16 @@ resource "aws_instance" "webb1" {
     Name = "terraform-web-B1"
   }
 }
+
+resource "aws_instance" "webc1" {
+  ami                    = data.aws_ami.ec2-ami.id
+  instance_type          = "t2.micro"
+  availability_zone      = "us-east-1c"
+  vpc_security_group_ids = ["${aws_security_group.web.id}"]
+  key_name               = "Project"
+  subnet_id              = aws_subnet.privC.id
+
+  tags = {
+    Name = "terraform-web-C1"
+  }
+}

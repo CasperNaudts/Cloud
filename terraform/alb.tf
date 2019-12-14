@@ -68,3 +68,8 @@ resource "aws_lb_target_group_attachment" "attachment2" {
   port             = 80
 }
 
+resource "aws_lb_target_group_attachment" "attachment3" {
+  target_group_arn = aws_lb_target_group.front_end.arn
+  target_id        = aws_instance.webc1.id
+  port             = 80
+}
