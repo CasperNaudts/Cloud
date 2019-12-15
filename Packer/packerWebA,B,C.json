@@ -12,6 +12,27 @@
             "tags": {
                 "Name": "packer-web"
             }
+        },
+        {
+            "type": "azure-arm",
+
+            "subscription_id": "7171cb1f-1f96-4016-92ea-d5cb72705593",
+
+            "managed_image_resource_group_name": "myResourceGroup",
+            "managed_image_name": "myPackerImage",
+
+            "os_type": "Linux",
+            "image_publisher": "OpenLogic",
+            "image_offer": "CentOS",
+            "image_sku": "7.3",
+
+            "azure_tags": {
+                "dept": "Engineering",
+                "task": "Image deployment"
+            },
+
+            "location": "westeurope",
+            "vm_size": "Standard_DS2_v2"
         }
     ],
     "provisioners":[ 
