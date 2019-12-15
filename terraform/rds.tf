@@ -28,6 +28,15 @@ resource "aws_db_subnet_group" "default" {
   }
 }
 
+resource "aws_secretsmanager_secret" "example" {
+  name = "example"
+}
+
+resource "aws_secretsmanager_secret_version" "example" {
+  secret_id     = "${aws_secretsmanager_secret.example.id}"
+  secret_string = "pxlpxlpxl"
+}
+
 resource "aws_db_instance" "service" {
   allocated_storage           = "10"
   storage_type                = "gp2"
@@ -36,7 +45,7 @@ resource "aws_db_instance" "service" {
   instance_class              = "db.t2.micro"
   name                        = "testDB"
   username                    = "pxl"
-  password                    = "pxlpxlpxl"
+  password                    = aws_secretsmanager_secret_version.example.secret_string
   identifier                  = "testdbtf"
   skip_final_snapshot         = true
   # snapshot_identifier         = data.aws_db_snapshot.testDBsnapshot.id
@@ -44,3 +53,4 @@ resource "aws_db_instance" "service" {
   multi_az                    = true
   allow_major_version_upgrade = true
 }
+
