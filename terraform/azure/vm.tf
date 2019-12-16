@@ -10,10 +10,31 @@ resource "azurerm_public_ip" "public" {
   allocation_method   = "Dynamic"
 }
 
+resource "azurerm_network_security_group" "example" {
+  name                = "acceptanceTestSecurityGroup1"
+  location            = azurerm_resource_group.cloud.location
+  resource_group_name = azurerm_resource_group.cloud.name
+}
+
+resource "azurerm_network_security_rule" "example" {
+  name                        = "http"
+  priority                    = 100
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "80"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "*"
+  resource_group_name         = azurerm_resource_group.cloud.name
+  network_security_group_name = azurerm_network_security_group.example.name
+}
+
 resource "azurerm_network_interface" "main" {
   name                = "vm-nic"
   location            = azurerm_resource_group.cloud.location
   resource_group_name = azurerm_resource_group.cloud.name
+  network_security_group_id = azurerm_network_security_group.example.id
 
   ip_configuration {
     name                          = "testconfiguration1"
@@ -38,10 +59,7 @@ resource "azurerm_virtual_machine" "main" {
   # delete_data_disks_on_termination = true
 
   storage_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "16.04-LTS"
-    version   = "latest"
+    id = data.azurerm_image.custom.id
   }
   storage_os_disk {
     name              = "myosdisk1"
