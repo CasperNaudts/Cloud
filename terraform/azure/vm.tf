@@ -1,3 +1,15 @@
+data "azurerm_image" "custom" {
+  name                = "myPackerImage"
+  resource_group_name = "myResourceGroup"
+}
+
+resource "azurerm_public_ip" "public" {
+  name                = "cloud"
+  resource_group_name = azurerm_resource_group.cloud.name
+  location            = azurerm_resource_group.cloud.location
+  allocation_method   = "Dynamic"
+}
+
 resource "azurerm_network_interface" "main" {
   name                = "vm-nic"
   location            = azurerm_resource_group.cloud.location
@@ -7,6 +19,7 @@ resource "azurerm_network_interface" "main" {
     name                          = "testconfiguration1"
     subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id = azurerm_public_ip.public.id
   }
 }
 
