@@ -30,3 +30,18 @@
         
     - name: clone git repo
       git: repo=https://github.com/CasperNaudts/Cloud-web-files.git dest=/var/www/html update=no
+
+    - name: Install Datadog Agent on servers in AWS
+      hosts: 'all'
+      become: yes
+      user: ec2-user  #Use the default login for the AWS image. Here we are using a Centos image.
+      roles:
+        - { role: Datadog.datadog, become: yes }
+      vars:
+        datadog_api_key: YOUR_API_KEY
+        datadog_config:
+          tags:
+            - env:dev
+          logs_enabled: true
+          process_config:
+            enabled: "true"
